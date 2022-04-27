@@ -13,16 +13,6 @@ weather_data = JSON.parse(response)
 # write a weather summary out to the screen including the current conditions and upcoming forecast.
 # Something like the output below.
 
-# Sample output:
-# In Chicago, IL it is currently 67 degrees and cloudy.
-# The rest of today will be a high of 65 and scattered shows.
-# The upcomming weather forecast is:
-# Wednesday: a high of 65 and scattered showers.
-# Thursday: a high of 67 and partly cloudy.
-# Friday: a high of 59 and rain.
-# Saturday: a high of 77 and cloudy.
-# ...
-
 # STEPS
 # Look at the weather_data hash.
 # Find the current data.
@@ -34,6 +24,27 @@ weather_data = JSON.parse(response)
 
 # 1. inspect the weather_data hash
 # puts weather_data
+
+puts "In #{weather_data["region"]} it is currently #{weather_data["currentConditions"]["temp"]["f"]} degrees and #{weather_data["currentConditions"]["comment"]}."
+puts "The rest of today will be a high of #{weather_data["next_days"][0]["max_temp"]["f"]} and #{weather_data["next_days"][0]["comment"]}."
+puts "The upcomming weather forecast is:"
+index = 1
+loop do
+    puts "#{weather_data["next_days"][index]["day"]}: a high of #{weather_data["next_days"][index]["max_temp"]["f"]} and #{weather_data["next_days"][index]["comment"]}."
+    index = index + 1
+    if index == 8
+    end
+end
+
+# Sample output:
+# In Chicago, IL it is currently 67 degrees and cloudy.
+# The rest of today will be a high of 65 and scattered shows.
+# The upcomming weather forecast is:
+# Wednesday: a high of 65 and scattered showers.
+# Thursday: a high of 67 and partly cloudy.
+# Friday: a high of 59 and rain.
+# Saturday: a high of 77 and cloudy.
+# ...
 
 # CHALLENGE
 # Can you display the weather forecast summary for a user-entered city?
